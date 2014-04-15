@@ -1,0 +1,22 @@
+diff -up xdmod-3.5.0/configuration/linker.php.fix xdmod-3.5.0/configuration/linker.php
+--- xdmod-3.5.0/configuration/linker.php.fix	2014-04-15 14:47:28.712333139 -0400
++++ xdmod-3.5.0/configuration/linker.php	2014-04-11 13:45:10.849220863 -0400
+@@ -20,7 +20,6 @@ $include_path .= ":" . $baseDir . '/clas
+ $include_path .= ":" . $baseDir . '/classes/User';
+ $include_path .= ":" . $baseDir . '/classes/ReportTemplates';
+ $include_path .= ":" . $baseDir . '/classes/AppKernel';
+-$include_path .= ":" . $baseDir . '/external_libraries';
+ $include_path .= ":" . $baseDir . '/libraries/HighRoller_1.0.5';
+ 
+ ini_alter('include_path', $include_path);
+diff -up xdmod-3.5.0/install.fix xdmod-3.5.0/install
+--- xdmod-3.5.0/install.fix	2014-04-15 14:47:42.457332199 -0400
++++ xdmod-3.5.0/install	2014-04-11 13:44:26.002223930 -0400
+@@ -219,7 +219,6 @@ function installData($src, $dest)
+    $dirs = array(
+       'classes',
+       'ddl',
+-      'external_libraries',
+       'html',
+       'libraries',
+       'reporting',

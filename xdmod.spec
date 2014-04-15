@@ -6,17 +6,22 @@ URL:           http://xdmod.sourceforge.net/
 Group:         Applications/Internet
 License:       LGPLv3+
 Source:        %{name}-%{version}.tar.gz
+
+# This patch file removes the packaged external lib of Zendframework from
+# the include path of a few files, opting to use the system wide Zend install
+# in the default include path instead.
+Patch0:        xdmod-3.5.0-remove_packaged_zend.patch
+
 BuildRoot:     %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch:     noarch
 BuildRequires: php-cli
 Requires:      httpd
-#Requires:      mysql >= 5.1
 Requires:      php >= 5.3 php-cli php-mysql php-pdo
 Requires:      php-pear-Log php-pear-MDB2 php-pear-MDB2-Driver-mysql
 Requires:      java-1.7.0-openjdk java-1.7.0-openjdk-devel
 Requires:      cronie
 Requires:      logrotate
-Requires:      php-Zendframework
+Requires:      php-ZendFramework
 
 %description
 XDMoD is a data warehouse and web portal for mining statistical data
@@ -26,6 +31,8 @@ detailed interactive charts, graphs, and tables.
 
 %prep
 %setup -q -n %{name}-%{version}
+rm -rf external_dependencies
+%patch0 -p1  
 
 %install
 rm -rf $RPM_BUILD_ROOT
