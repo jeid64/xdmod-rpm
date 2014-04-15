@@ -11,7 +11,6 @@ BuildArch:     noarch
 BuildRequires: php-cli
 Requires:      httpd
 #Requires:      mysql >= 5.1
-Requires:
 Requires:      php >= 5.3 php-cli php-mysql php-pdo
 Requires:      php-pear-Log php-pear-MDB2 php-pear-MDB2-Driver-mysql
 Requires:      java-1.7.0-openjdk java-1.7.0-openjdk-devel
