@@ -56,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 DESTDIR=$RPM_BUILD_ROOT ./install \
     --quiet \
     --bindir=%{_bindir} \
-    --libdir=%{_libdir}/%{name} \
+    --libdir=%{_sysconfdir}/%{name} \
     --sysconfdir=%{_sysconfdir}/%{name} \
     --datadir=%{_datadir}/%{name} \
     --docdir=%{_docdir}/%{name}-%{version} \
@@ -71,7 +71,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %{_bindir}/%{name}-*
-%{_libdir}/%{name}/
 %{_datadir}/%{name}/
 %{_docdir}/%{name}-%{version}/
 
