@@ -48,6 +48,9 @@ rm html/extrest/.htaccess
 rm html/maintenance/.htaccess
 rm html/tmp/.htaccess
 
+# Remove .gitignore
+rm docs/html/.gitignore
+
 %install
 rm -rf $RPM_BUILD_ROOT
 DESTDIR=$RPM_BUILD_ROOT ./install \
@@ -72,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/
 %{_docdir}/%{name}-%{version}/
 
-%attr(0775,root,apache) %dir %{_localstatedir}/log/%{name}
+%attr(0770,root,apache) %dir %{_localstatedir}/log/%{name}
 
 %config(noreplace) %{_sysconfdir}/%{name}/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/%{name}.conf
