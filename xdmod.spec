@@ -12,6 +12,11 @@ Source:        %{name}-%{version}.tar.gz
 # in the default include path instead.
 Patch0:        xdmod-3.5.0-remove_packaged_zend.patch
 
+# This patch file modifies the provided slurm.conf for httpd to have the redirect
+# options that are normally in the scattered .htaccess files from upstream. 
+# This allows us to remove .htaccess files while still having the options in them.
+Patch1:        xdmod-3.5.0-remove_htaccess.patch
+
 BuildRoot:     %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch:     noarch
 BuildRequires: php-cli
@@ -31,8 +36,17 @@ detailed interactive charts, graphs, and tables.
 
 %prep
 %setup -q -n %{name}-%{version}
+# Delete external_dependencies which has packaged Zend in it.
 rm -rf external_dependencies
-%patch0 -p1  
+%patch0 -p1
+
+# Delete htaccess files, their options were moved into the apache conf.
+%patch1 -p1
+rm html/.htaccess
+rm html/rest/.htaccess
+rm html/extrest/.htaccess
+rm html/maintenance/.htaccess
+rm html/tmp/.htaccess
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -1,0 +1,20 @@
+diff -up xdmod-3.5.0/configuration/apache.conf.removehtaccess xdmod-3.5.0/configuration/apache.conf
+--- xdmod-3.5.0/configuration/apache.conf.removehtaccess	2014-04-15 15:23:15.545186339 -0400
++++ xdmod-3.5.0/configuration/apache.conf	2014-04-15 15:29:07.162162295 -0400
+@@ -7,5 +7,16 @@ Listen 8080
+        DirectoryIndex index.php
+        RewriteEngine On
+    </Directory>
++   <Directory /usr/share/xdmod/html/rest>
++       RewriteEngine On
++       RewriteRule (.*) index.php [L]
++   </Directory>
++   <Directory /usr/share/xdmod/html/extrest>
++       RewriteEngine On
++       RewriteRule (.*) index.php [L]
++   </Directory>
++   <Directory /usr/share/xdmod/html/maintenance/>
++        RewriteEngine off
++    </Directory>
+ </VirtualHost>
+ 
